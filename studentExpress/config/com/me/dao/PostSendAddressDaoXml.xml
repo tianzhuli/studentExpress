@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.me.dao.PostSendAddressDaoXml">
+	<insert id="insertSendAddress" parameterType="com.me.domain.PostSendAddress"
+		useGeneratedKeys="true" keyProperty="postAddressID">  <!-- 查询表中记录总数 -->
+		insert into
+		send_express_address_sender(userID,postProvince,postCity,postDistrict,postDetail,postName,postTel,postCode,postIsDefault)
+		values(#{userID},#{postProvince},#{postCity},#{postDistrict},#{postDetail},#{postName},#{postTel},#{postCode},#{postIsDefault})
+	</insert>
+	<update id="updateSendAddress" parameterType="com.me.domain.PostSendAddress">
+		update send_express_address_sender
+		<set>
+			<if test="userID != null">
+				userID = #{userID},
+			</if>
+			<if test="postProvince != null">
+				postProvince = #{postProvince},
+			</if>
+			<if test="postCity != null">
+				postCity = #{postCity},
+			</if>
+			<if test="postDistrict != null">
+				postDistrict = #{postDistrict},
+			</if>
+			<if test="postDetail != null">
+				postDetail = #{postDetail},
+			</if>
+			<if test="postCode != null">
+				postCode = #{postCode},
+			</if>
+			<if test="postName != null">
+				postName = #{postName},
+			</if>
+			<if test="postTel != null">
+				postTel = #{postTel},
+			</if>
+			<if test="postIsDefault != null">
+				postIsDefault = #{postIsDefault}
+			</if>
+		</set>
+		where postAddressID=#{postAddressID}
+	</update>
+</mapper>

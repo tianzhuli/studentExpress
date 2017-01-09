@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+	http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+	http://www.springframework.org/schema/mvc  http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+
+
+	<context:component-scan base-package="com.me.dao" />
+	<context:component-scan base-package="com.me.service" />
+	<context:component-scan base-package="com.me.domain" />
+
+
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" p:url="jdbc:mysql://localhost:3306/xuedi"
+		p:driverClassName="com.mysql.jdbc.Driver" p:username="root"
+		p:password="yls1911" p:initialSize="20" p:maxActive="200" p:minIdle="20"
+		p:maxWait="2000">
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSource">
+	</bean>
+	<bean class="com.me.web.InitializeProcessor"/>
+	<bean id="usersDao" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.UsersDao" p:sqlSessionFactory-ref="sqlSessionFactory">
+	</bean>
+
+	<bean id="expressusersDao" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.ExpressUserDao" p:sqlSessionFactory-ref="sqlSessionFactory">
+	</bean>
+	<bean id="managerDao" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.ManagerDao" p:sqlSessionFactory-ref="sqlSessionFactory">
+	</bean>
+	<bean id="walletDao" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.WalletDao" p:sqlSessionFactory-ref="sqlSessionFactory">
+	</bean>
+
+	<bean id="systemInformation" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.SystemInformationDao"
+		p:sqlSessionFactory-ref="sqlSessionFactory">
+	</bean>
+	<bean id="postOrderDao" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.PostOrderDao"
+		p:sqlSessionFactory-ref="sqlSessionFactory">
+	</bean>
+	<bean id="receiveOrderDao" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.ReceiveOrderDao"
+		p:sqlSessionFactory-ref="sqlSessionFactory">
+	</bean>
+	<bean id="receiveAddressDao" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.ReceiveAddressDao"
+		p:sqlSessionFactory-ref="sqlSessionFactory">
+	</bean>
+	<bean id="orderPayWayDao" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.OrderPayWayDao"
+		p:sqlSessionFactory-ref="sqlSessionFactory">
+	</bean>
+	<bean id="postReceiveAddressDao" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.PostReceiveAddressDao"
+		p:sqlSessionFactory-ref="sqlSessionFactory">
+	</bean>
+	<bean id="postSendAddressDao" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.PostSendAddressDao"
+		p:sqlSessionFactory-ref="sqlSessionFactory">
+	</bean>
+	<bean id="sqlXmlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:configLocation="classpath:MyBatis-Configuration.xml"
+		p:dataSource-ref="dataSource"></bean>
+	<bean id="usersDaoXml" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.UserDaoXml" p:sqlSessionFactory-ref="sqlSessionFactory"></bean>
+		<bean id="receiveOrderDaoXml" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.ReceiveOrderDaoXml" p:sqlSessionFactory-ref="sqlSessionFactory"></bean>
+		<bean id="postOrderDaoXml" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.PostOrderDaoXml" p:sqlSessionFactory-ref="sqlSessionFactory"></bean>
+		<bean id="receiveAddressDaoXml" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.ReceiveAddressDaoXml" p:sqlSessionFactory-ref="sqlSessionFactory"></bean>
+		<bean id="postSendAddressDaoXml" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.PostSendAddressDaoXml" p:sqlSessionFactory-ref="sqlSessionFactory"></bean>
+		<bean id="postReceiveAddressDaoXml" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.PostReceiveAddressDaoXml" p:sqlSessionFactory-ref="sqlSessionFactory"></bean>
+		<bean id="walletDaoXml" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.WalletDaoXml" p:sqlSessionFactory-ref="sqlSessionFactory"></bean>
+		<bean id="expressUserDaoXml" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.me.dao.ExpressUserDaoXml" p:sqlSessionFactory-ref="sqlSessionFactory"></bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+		p:dataSource-ref="dataSource">
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource">
+	</bean>
+	<aop:config proxy-target-class="true">
+		<aop:pointcut expression="execution(* com.me.service.*.*(..)) "
+			id="serviceMethod" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod" />
+	</aop:config>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+
+<bean id="testJob" class="com.me.test.QuartzUpdate"/>
+    
+	<!-- 引用任务描述 -->
+    <bean id="methodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+       <property name="targetObject">
+		   
+		   <!-- 引用任务方法所在的类 -->
+           <ref bean="testJob" />
+       </property>
+       <property name="targetMethod">
+           
+		   <!-- 指定任务方法名称 -->
+		   <value>update</value>
+       </property>
+    </bean>
+    
+    <!-- 配置触发器 -->
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+       <!-- 这里不可以直接在属性jobDetail中引用taskJob，因为他要求的是一个jobDetail类型的对象，所以我们得通过MethodInvokingJobDetailFactoryBean来转一下 -->
+       <property name="jobDetail">	   
+		   <!-- 引用任务描述bean -->
+           <ref bean="methodInvokingJobDetail" />
+       </property>
+       <!-- 每天的8点到21点每隔1分钟触发，具体说明见附录 -->
+       <property name="cronExpression">	   
+		   <!-- 秒 分 时 日 月 周 年  0 0 07,12,15,23 * * ? -->
+           <value>00 00 00 * * ?</value>
+       </property>
+    </bean>
+ 
+	<!-- 配置任务工厂, 只能有一个这种bean -->
+    <bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+       
+	   <!-- 添加触发器 -->
+       <property name="triggers">
+           <list>
+              <ref local="cronTrigger" />
+			  <!-- ... -->
+           </list>
+       </property>
+    </bean>
+
+
+
+</beans>

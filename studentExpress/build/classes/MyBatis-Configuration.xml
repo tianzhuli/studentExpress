@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE configuration   
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+<configuration>
+    <mappers>
+        <mapper resource="com/me/dao/UserDaoXml.xml"/>
+        <mapper resource="com/me/dao/ReceiveOrderDaoXml.xml"/>
+        <mapper resource="com/me/dao/PostOrderDaoXml.xml"/>
+        <mapper resource="com/me/dao/ReceiveAddressDaoXml.xml"/>
+         <mapper resource="com/me/dao/PostReceiveAddressDaoXml.xml"/>
+          <mapper resource="com/me/dao/PostSendAddressDaoXml.xml"/>
+          <mapper resource="com/me/dao/WalletDaoXml.xml"/>
+          <mapper resource="com/me/dao/ExpressUserDaoXml.xml"/>
+           <mapper resource="com/me/dao/WalletDaoXml.xml"/>
+    </mappers>
+</configuration>

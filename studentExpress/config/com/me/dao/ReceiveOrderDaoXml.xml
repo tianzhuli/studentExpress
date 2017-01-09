@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.me.dao.ReceiveOrderDaoXml">
+	<update id="updateReceiveOrder" parameterType="com.me.domain.ReceiveOrder">  <!-- 查询表中记录总数 -->
+		update replacement_express_order
+		<set>
+			<if test="deliverID != null">
+				deliverID = #{deliverID},
+			</if>
+			<if test="orderPayTime != null">
+				orderPayTime = #{orderPayTime},
+			</if>
+			<if test="orderPayWayID != null">
+				orderPayWayID = #{orderPayWayID},
+			</if>
+			<if test="orderState != null">
+				orderState = #{orderState},
+			</if>
+			<if test="orderReceiveTime != null">
+				orderReceiveTime = #{orderReceiveTime},
+			</if>
+			<if test="orderCompleteTime != null">
+				orderCompleteTime = #{orderCompleteTime},
+			</if>
+			<if test="orderEvaluateLevel != null">
+				orderEvaluateLevel = #{orderEvaluateLevel},
+			</if>
+			<if test="orderEvaluateContent != null">
+				orderEvaluateContent = #{orderEvaluateContent},
+			</if>
+			<if test="orderAddressContent != null">
+				orderAddressContent = #{orderAddressContent}
+			</if>
+		</set>
+		where orderID=#{orderID}
+	</update>
+	<insert id="insertReceiveOrder" parameterType="com.me.domain.ReceiveOrder">  <!-- 查询表中记录总数 -->
+		insert into replacement_express_order
+		<set>
+			<if test="orderID != null">
+				orderID = #{orderID},
+			</if>
+			<if test="orderPrice != null">
+				orderPrice = #{orderPrice},
+			</if>
+			<if test="orderWeight != null">
+				orderWeight = #{orderWeight},
+			</if>
+			<if test="expressageNo != null">
+				expressageNo = #{expressageNo},
+			</if>
+			<if test="expressageContent != null">
+				expressageContent = #{expressageContent},
+			</if>
+			<if test="receiveAddressID != null">
+				receiveAddressID = #{receiveAddressID},
+			</if>
+			<if test="deliverID != null">
+				deliverID = #{deliverID},
+			</if>
+			<if test="userID != null">
+				userID = #{userID},
+			</if>
+			<if test="orderRemark != null">
+				orderRemark = #{orderRemark},
+			</if>
+			<if test="orderPlaceTime != null">
+				orderPlaceTime = #{orderPlaceTime},
+			</if>
+			<if test="orderPayTime != null">
+				orderPayTime = #{orderPayTime},
+			</if>
+			<if test="orderPayWayID != null">
+				orderPayWayID = #{orderPayWayID},
+			</if>
+			<if test="predictReceiveTime != null">
+				predictReceiveTime = #{predictReceiveTime},
+			</if>
+			<if test="orderState != null">
+				orderState = #{orderState},
+			</if>
+			<if test="orderReceiveTime != null">
+				orderReceiveTime = #{orderReceiveTime},
+			</if>
+			<if test="orderCompleteTime != null">
+				orderCompleteTime = #{orderCompleteTime},
+			</if>
+			<if test="orderEvaluateLevel != null">
+				orderReceiveTime = #{orderReceiveTime},
+			</if>
+			<if test="orderEvaluateContent != null">
+				orderCompleteTime = #{orderCompleteTime},
+			</if>
+			<if test="orderAddressContent != null">
+				orderAddressContent = #{orderAddressContent}
+			</if>
+		</set>
+	</insert>
+	<select id="selectReceiveOrder" parameterType="com.me.web.GetReceiveOrderCommand"
+		resultType="hashMap">
+		select * from replacement_express_order inner join
+		replacement_express_address where
+		replacement_express_order.receiveAddressID=replacement_express_address.receiveAddressID
+		<if test="deliverID !=null">
+			and replacement_express_order.deliverID = #{deliverID}
+		</if>
+		<if test="userID !=null">
+			and replacement_express_order.userID = #{userID}
+		</if>
+		<if test="orderState !=null">
+			and orderState = #{orderState}
+		</if>
+		<if test="orderID !=null">
+			and orderID = #{orderID}
+		</if>
+		order by orderPlaceTime DESC
+	</select>
+	<select id="selectReceiveOrderView" parameterType="com.me.web.GetReceiveOrderCommand"
+		resultType="hashMap">
+		select * from receiveOrderView where 1=1
+		<if test="deliverID !=null">
+			and deliverID = #{deliverID}
+		</if>
+		<if test="userID !=null">
+			and userID = #{userID}
+		</if>
+		<if test="orderState !=null">
+			and orderState = #{orderState}
+		</if>
+		<if test="orderID !=null">
+			and orderID = #{orderID}
+		</if>
+	</select>
+</mapper>

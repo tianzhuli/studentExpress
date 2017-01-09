@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.me.dao.PostOrderDaoXml">
+	<update id="updatePostOrder" parameterType="com.me.domain.PostOrder">
+		update send_express_order
+		<set>
+			<if test="postexpressageNo != null">
+				postexpressageNo = #{postexpressageNo},
+			</if>
+			<if test="expressWay != null">
+				expressWay = #{expressWay},
+			</if>
+			<if test="postorderPayWayID != null">
+				postorderPayWayID = #{postorderPayWayID},
+			</if>
+			<if test="deliverID != null">
+				deliverID = #{deliverID},
+			</if>
+			<if test="postorderPayTime != null">
+				postorderPayTime = #{postorderPayTime},
+			</if>
+			<if test="postorderState != null">
+				postorderState = #{postorderState},
+			</if>
+			<if test="postorderReceiveTime != null">
+				postorderReceiveTime = #{postorderReceiveTime},
+			</if>
+			<if test="postorderCompleteTime != null">
+				postorderCompleteTime = #{postorderCompleteTime},
+			</if>
+			<if test="postorderEvaluateLevel != null">
+				postorderEvaluateLevel = #{postorderEvaluateLevel},
+			</if>
+			<if test="postorderEvaluateContent != null">
+				postorderEvaluateContent = #{postorderEvaluateContent},
+			</if>
+			<if test="postorderSendAddressContent != null">
+				postorderSendAddressContent = #{postorderSendAddressContent},
+			</if>
+			<if test="postorderReceiveAddressContent != null">
+				postorderReceiveAddressContent = #{postorderReceiveAddressContent}
+			</if>
+		</set>
+		where postorderID=#{postorderID}
+	</update>
+	<insert id="insertPostOrder" parameterType="com.me.domain.PostOrder">  <!-- 查询表中记录总数 -->
+		insert into send_express_order
+		<set>
+			<if test="postorderID != null">
+				postorderID = #{postorderID},
+			</if>
+			<if test="postorderPrice != null">
+				postorderPrice = #{postorderPrice},
+			</if>
+			<if test="postorderWeight != null">
+				postorderWeight = #{postorderWeight},
+			</if>
+			<if test="postexpressageNo != null">
+				postexpressageNo = #{postexpressageNo},
+			</if>
+			<if test="expressWay != null">
+				expressWay = #{expressWay},
+			</if>
+			<if test="postorderPayWayID != null">
+				postorderPayWayID = #{postorderPayWayID},
+			</if>
+			<if test="postAddressID != null">
+				postAddressID = #{postAddressID},
+			</if>
+			<if test="receiveAddressID != null">
+				receiveAddressID = #{receiveAddressID},
+			</if>
+			<if test="deliverID != null">
+				deliverID = #{deliverID},
+			</if>
+			<if test="userID != null">
+				userID = #{userID},
+			</if>
+			<if test="postorderRemark != null">
+				postorderRemark = #{postorderRemark},
+			</if>
+			<if test="postorderPlaceTime != null">
+				postorderPlaceTime = #{postorderPlaceTime},
+			</if>
+			<if test="postorderPayTime != null">
+				postorderPayTime = #{postorderPayTime},
+			</if>
+			<if test="predictReceiveTime != null">
+				predictReceiveTime = #{predictReceiveTime},
+			</if>
+			<if test="postorderState != null">
+				postorderState = #{postorderState},
+			</if>
+			<if test="postorderReceiveTime != null">
+				postorderReceiveTime = #{postorderReceiveTime},
+			</if>
+			<if test="postorderCompleteTime != null">
+				postorderCompleteTime = #{postorderCompleteTime},
+			</if>
+			<if test="postorderEvaluateContent != null">
+				postorderEvaluateContent = #{postorderEvaluateContent},
+			</if>
+			<if test="postorderEvaluateLevel != null">
+				postorderEvaluateLevel = #{postorderEvaluateLevel},
+			</if>
+			<if test="postorderSendAddressContent != null">
+				postorderSendAddressContent = #{postorderSendAddressContent},
+			</if>
+			<if test="postorderReceiveAddressContent != null">
+				postorderReceiveAddressContent = #{postorderReceiveAddressContent}
+			</if>
+		</set>
+	</insert>
+
+	<select id="selectPostOrder" parameterType="com.me.web.GetPostOrderCommand"
+		resultType="hashMap">
+		select * from send_express_order where 1=1
+		<if test="deliverID !=null">
+			and deliverID = #{deliverID}
+		</if>
+		<if test="userID !=null">
+			and userID = #{userID}
+		</if>
+		<if test="postorderState !=null">
+			and postorderState = #{postorderState}
+		</if>
+		<if test="postorderID !=null">
+			and postorderID = #{postorderID}
+		</if>
+	</select>
+
+	<select id="selectPostOrderView" parameterType="com.me.web.GetPostOrderCommand"
+		resultType="hashMap">
+		select * from postSendOrderView where 1=1
+		<if test="deliverID !=null">
+			and deliverID = #{deliverID}
+		</if>
+		<if test="userID !=null">
+			and userID = #{userID}
+		</if>
+		<if test="postorderState !=null">
+			and postorderState = #{postorderState}
+		</if>
+		<if test="postorderID !=null">
+			and postorderID = #{postorderID}
+		</if>
+	</select>
+
+	<select id="selectPostAddressView" parameterType="com.me.web.GetPostOrderCommand"
+		resultType="hashMap">
+		select * from postAddressView where 1=1
+		<if test="deliverID !=null">
+			and deliverID = #{deliverID}
+		</if>
+		<if test="userID !=null">
+			and userID = #{userID}
+		</if>
+		<if test="postorderState !=null">
+			and postorderState = #{postorderState}
+		</if>
+		<if test="postorderID !=null">
+			and postorderID = #{postorderID}
+		</if>
+	</select>
+</mapper>

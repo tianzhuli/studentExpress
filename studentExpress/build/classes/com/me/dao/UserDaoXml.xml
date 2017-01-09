@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http:www.//mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.me.dao.UserDaoXml">
+    <select id="countAll" parameterType="com.me.domain.ConsumerUser" resultType="int">  <!-- 查询表中记录总数 -->
+        select count(*)  from consumer_user where 1=1
+        <if test="userState != null">
+        and userState = #{userState} 
+        </if>
+        <if test="userIntegration != null">
+        and userIntegration = #{userIntegration}
+        </if>
+    </select>
+    <update id="updateUser" parameterType="com.me.domain.ConsumerUser">
+    update consumer_user
+    <set>
+     <if test="userPassword != null">
+        userPassword = #{userPassword}, 
+        </if>
+        <if test="userName != null">
+        userName = #{userName},
+        </if>
+         <if test="userEmail != null">
+        userEmail = #{userEmail}, 
+        </if>
+        <if test="userRelateOther != null">
+        userRelateOther = #{userRelateOther},
+        </if>
+         <if test="userNickname != null">
+        userNickname = #{userNickname}, 
+        </if>
+        <if test="userSex != null">
+        userSex = #{userSex},
+        </if>
+         <if test="userCollege != null">
+        userCollege = #{userCollege}, 
+        </if>
+        <if test="userCampus != null">
+        userCampus = #{userCampus},
+        </if>
+        <if test="userDorbuilding != null">
+        userDorbuilding = #{userDorbuilding}, 
+        </if>
+        <if test="userDorNo != null">
+        userDorNo = #{userDorNo},
+        </if>
+         <if test="userEmail != null">
+        userImageUrl = #{userImageUrl}, 
+        </if>
+        <if test="userLoginTimes != null">
+        userLoginTimes = #{userLoginTimes},
+        </if>
+         <if test="userQualityRating != null">
+        userQualityRating = #{userQualityRating}, 
+        </if>
+        <if test="userIntegration != null">
+        userIntegration = #{userIntegration},
+        </if>
+         <if test="remainingSum != null">
+        remainingSum = #{remainingSum}, 
+        </if>
+        <if test="walletID != null">
+        walletID = #{walletID}
+        </if>
+    </set>
+    where userID=#{userID}
+    </update>
+</mapper>

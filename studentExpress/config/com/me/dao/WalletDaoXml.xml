@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.me.dao.WalletDaoXml">
+<update id="updateWallet" parameterType="com.me.domain.Wallet" > 
+        update  wallet_user
+        <set>
+        <if test="exremainingSum != null">
+        exremainingSum = #{exremainingSum}, 
+        </if>
+        <if test="discountCouponSum != null">
+        discountCouponSum = #{discountCouponSum},
+        </if>
+         <if test="bankcardSum != null">
+        bankcardSum = #{bankcardSum}
+        </if>
+        </set>
+        where walletID=#{walletID}
+    </update>
+</mapper>

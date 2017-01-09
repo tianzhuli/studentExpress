@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.me.dao.PostReceiveAddressDaoXml">
+	<insert id="insertPostReceiveAddress" parameterType="com.me.domain.PostReceiveAddress"
+		useGeneratedKeys="true" keyProperty="receiveAddressID">  <!-- 查询表中记录总数 -->
+		insert into send_express_address_receive(userID,receiveProvince,receiveCity,receiveDistrict,
+		receiveDetail,receiveName,receiveTel,receiveCode,receiveIsDefault)
+		values(#{userID},#{receiveProvince},#{receiveCity},
+		#{receiveDistrict},#{receiveDetail},#{receiveName},#{receiveTel},#{receiveCode},#{receiveIsDefault})
+	</insert>
+	<update id="updatePostReceiveAddress" parameterType="com.me.domain.PostReceiveAddress">
+	update replacement_express_address 
+	<set>
+	 <if test="userID != null">
+        userID = #{userID}, 
+        </if>
+        <if test="receiveProvince != null">
+        receiveProvince = #{receiveCampus},
+        </if>
+         <if test="receiveCity != null">
+        receiveCity = #{receiveCity},
+        </if>
+         <if test="receiveDistrict != null">
+        receiveDistrict = #{receiveDistrict},
+        </if>
+         <if test="receiveDetail != null">
+        receiveDetail = #{receiveDetail},
+        </if>
+         <if test="receiveCode != null">
+        receiveCode = #{receiveCode},
+        </if>
+         <if test="receiveName != null">
+        receiveName = #{receiveName},
+        </if>
+         <if test="receiveTel != null">
+        receiveTel = #{receiveTel},
+        </if>
+         <if test="receiveIsDefault != null">
+        receiveIsDefault = #{receiveIsDefault}
+        </if>
+	</set>
+	where receiveAddressID = #{receiveAddressID}
+	</update>
+</mapper>

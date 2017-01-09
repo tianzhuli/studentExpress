@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.me.dao.ExpressUserDaoXml">
+<update id="updateExpressUser" parameterType="com.me.domain.ExpressPerson" > 
+         update express_person
+    <set>
+     <if test="exuserName != null">
+        exuserName = #{exuserName}, 
+        </if>
+        <if test="exuserEmail != null">
+        exuserEmail = #{exuserEmail},
+        </if>
+         <if test="exuserPassword != null">
+        exuserPassword = #{exuserPassword}, 
+        </if>
+        <if test="exuserNickname != null">
+        exuserNickname = #{exuserNickname},
+        </if>
+         <if test="exuserRelateOther != null">
+        exuserRelateOther = #{exuserRelateOther}, 
+        </if>
+        <if test="exuserSex != null">
+        exuserSex = #{exuserSex},
+        </if>
+         <if test="exuserStuno != null">
+        exuserStuno = #{exuserStuno}, 
+        </if>
+        <if test="exuserStuimageUrl != null">
+        exuserStuimageUrl = #{exuserStuimageUrl},
+        </if>
+        <if test="exuserCardID != null">
+        exuserCardID = #{exuserCardID}, 
+        </if>
+        <if test="exuserCollege != null">
+        exuserCollege = #{exuserCollege},
+        </if>
+         <if test="exuserCampus != null">
+        exuserCampus = #{exuserCampus}, 
+        </if>
+        <if test="exuserDorbuilding != null">
+        exuserDorbuilding = #{exuserDorbuilding},
+        </if>
+         <if test="exuserDorNo != null">
+        exuserDorNo = #{exuserDorNo}, 
+        </if>
+        <if test="exuserImageUrl != null">
+        exuserImageUrl = #{exuserImageUrl},
+        </if>
+         <if test="exworkingPlace != null">
+        exworkingPlace = #{exworkingPlace}, 
+        </if>
+          <if test="exworkingTime != null">
+        exworkingTime = #{exworkingTime}, 
+        </if>
+        <if test="exuserLoginTimes != null">
+        exuserLoginTimes = #{exuserLoginTimes},
+        </if>
+        <if test="exuserState != null">
+        exuserState = #{exuserState}, 
+        </if>
+        <if test="exuserQualityRating != null">
+        exuserQualityRating = #{exuserQualityRating},
+        </if>
+         <if test="exremainingSum != null">
+        exremainingSum = #{exremainingSum}, 
+        </if>
+        <if test="exuserYearOrder != null">
+        exuserYearOrder = #{exuserYearOrder},
+        </if>
+         <if test="exuserMonthOrder != null">
+        exuserMonthOrder = #{exuserMonthOrder}, 
+        </if>
+        <if test="exuserDayOrder != null">
+        exuserDayOrder = #{exuserDayOrder},
+        </if>
+         <if test="exuserTotalOrder != null">
+        exuserTotalOrder = #{exuserTotalOrder}, 
+        </if>
+        <if test="walletID != null">
+        walletID = #{walletID}
+        </if>
+    </set>
+    where exuserID=#{exuserID}
+    </update>
+</mapper>
